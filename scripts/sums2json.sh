@@ -29,5 +29,5 @@ POST_ADDRESS=$3
 if [ ! -z "$POST_ADDRESS" ]
 then
     # max connection time is 2mins, 3 mins in total to complete the request
-    curl -X POST -d @"$JSON_OUT" --connect-timeout 120 --max-time 180 "$POST_ADDRESS"
+    curl -X POST -d @"$JSON_OUT" --connect-timeout 120 --max-time 180 "$POST_ADDRESS" > post_server_response.txt
 fi
