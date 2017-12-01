@@ -13,7 +13,7 @@ doc: |
     A Docker container for producing file md5sum and sha512sum. See the [dockstore-cgp-chksum](https://github.com/cancerit/dockstore-cgp-chksum) website for more information.
 
 dct:creator:
-  "@id": "http://www.researchgate.net/profile/Xu_Yaobo"
+  "@id": "yaobo.xu@sanger.ac.uk"
   foaf:name: Yaobo Xu
   foaf:mbox: "yx2@sanger.ac.uk"
 
@@ -29,25 +29,18 @@ inputs:
       position: 1
       shellQuote: true
 
-  out_json:
-    type: string
-    doc: "JSON output file name"
-    inputBinding:
-      position: 2
-      shellQuote: true
-
   post_address:
     type: ["null", string]
     doc: "Optional POST address to send JSON results"
     inputBinding:
-      position: 3
+      position: 2
       shellQuote: true
 
 outputs:
   chksum_json:
     type: File
     outputBinding:
-      glob: $(inputs.out_json)
+      glob: check_sums.json
 
   post_server_response:
     type: ["null", File]

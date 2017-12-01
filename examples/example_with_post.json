@@ -1,0 +1,15 @@
+{
+  "in_file": {
+    "path": "e4b8f5e6-3698-11e7-90d5-7b4f8b6ca8b2.cgpmap.bam",
+    "class": "File"
+  },
+  "post_address":"http://posttestserver.com/post.php",
+  "chksum_json": {
+    "path": "/tmp/test_out.json",
+    "class": "File"
+  },
+  "post_server_response": {
+    "path": "/tmp/test_server_response.txt",
+    "class": "File"
+  }
+}

@@ -3,7 +3,7 @@
 # fail if used variable unset
 set -u
 IN_FILE=$1
-JSON_OUT=$2
+JSON_OUT="check_sums.json"
 
 set -o pipefail
 cat $IN_FILE | tee >(md5sum > md5.checksum) | sha512sum > sha2.checksum
@@ -24,7 +24,7 @@ fi
 rm -f md5.checksum sha2.checksum
 
 set +u
-POST_ADDRESS=$3
+POST_ADDRESS=$2
 
 if [ ! -z "$POST_ADDRESS" ]
 then
