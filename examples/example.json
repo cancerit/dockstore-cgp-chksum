@@ -1,10 +1,10 @@
 {
   "in_file": {
-    "path": "e4b8f5e6-3698-11e7-90d5-7b4f8b6ca8b2.cgpmap.bam",
+    "path": "ftp://ftp.sanger.ac.uk/pub/cancer/dockstore/human/cytoband_GRCh37d5.txt",
     "class": "File"
   },
   "chksum_json": {
-    "path": "tmp/test_out.json",
+    "path": "/tmp/test_out.json",
     "class": "File"
   }
 }
