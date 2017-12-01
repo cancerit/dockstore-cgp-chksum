@@ -8,7 +8,7 @@ LABEL uk.ac.sanger.cgp="Cancer Genome Project, Wellcome Trust Sanger Institute" 
 
 USER root
 
-ENV OPT /opt/wtsi-casm
+ENV OPT /opt/wtsi-cgp
 ENV PATH $OPT/bin:$PATH
 
 RUN apk add --no-cache curl
