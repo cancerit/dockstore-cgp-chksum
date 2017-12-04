@@ -11,13 +11,12 @@ dockstore-cgp-chksum
 Inputs are:
 
 1. A file from which md5sum and sha512sum are generated
-2. A JSON file name where checksums are stored
-3. An optional POST address to send the JSON file to
+2. An optional POST address to send the JSON file to
 
 Outputs are:
 
-1. A JSON file
-2. A text file contains POST server response
+1. "check_sums.json" - A JSON file where checksums are stored
+2. "post_server_response.txt" - A text file contains POST server response
 
 LICENCE
 =======
