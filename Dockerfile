@@ -3,7 +3,7 @@ FROM alpine:3.6
 MAINTAINER yx2@sanger.ac.uk
 
 LABEL uk.ac.sanger.cgp="Cancer Genome Project, Wellcome Trust Sanger Institute" \
-      version="0.0.0" \
+      version="0.1.0" \
       description="tool to produce and post file checksum for dockstore.org"
 
 USER root
