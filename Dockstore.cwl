@@ -40,11 +40,11 @@ outputs:
   chksum_json:
     type: File
     outputBinding:
-      glob: check_sums.json
+      glob: ($inputs.in_file).check_sums.json
 
   post_server_response:
     type: ["null", File]
     outputBinding:
-      glob: post_server_response.txt
+      glob: ($inputs.in_file).post_server_response.txt
 
 baseCommand: ["/opt/wtsi-cgp/bin/sums2json.sh"]
