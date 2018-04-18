@@ -3,7 +3,8 @@
 # fail if used variable unset
 set -u
 IN_FILE=$1
-JSON_OUT="${IN_FILE}.check_sums.json"
+IN_FILE_BASE=$(basename ${IN_FILE})
+JSON_OUT="${IN_FILE_BASE}.check_sums.json"
 
 set -o pipefail
 cat $IN_FILE | tee >(md5sum > md5.checksum) | sha512sum > sha2.checksum
@@ -30,5 +31,5 @@ if [ ! -z "$POST_ADDRESS" ]
 then
     # max connection time is 2mins, 3 mins in total to complete the request
     # add -f to prevent silent HTTP fail on server errors.
-    curl -X POST -d @"$JSON_OUT" --connect-timeout 120 --max-time 180 -f "$POST_ADDRESS" > ${IN_FILE}.post_server_response.txt
+    curl -X POST -d @"$JSON_OUT" --connect-timeout 120 --max-time 180 -f "$POST_ADDRESS" > ${IN_FILE_BASE}.post_server_response.txt
 fi
