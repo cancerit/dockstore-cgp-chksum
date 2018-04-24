@@ -24,7 +24,7 @@ while getopts ":hi:p:H:" opt; do
     i ) IN_FILE="$OPTARG"
         if [ ! -f "$OPTARG" ]; then echo -e "\nError: $OPTARG does not exist" >&2; exit 1; fi ;;
     p ) POST_ADDRESS="$OPTARG" ;;
-    H ) POST_HEADER+=(-H "$OPTARG") ;;
+    H ) POST_HEADERS+=(-H "$OPTARG") ;;
     \? ) echo ""
         echo "Error: Unimplemented option: -$OPTARG" >&2
         usage >&2
@@ -41,7 +41,7 @@ done
 # check mandatory options:
 if [ "-$IN_FILE" == "-" ]; then echo "Error: missing mandatory parameter -i." >&2; exit 1; fi
 
-if [ "-$POST_ADDRESS" == "-" ] && [ ${#POST_HEADER[@]} != 0 ];
+if [ "-$POST_ADDRESS" == "-" ] && [ ${#POST_HEADERS[@]} != 0 ];
 then
   echo "Error: -p (POST URL) must be specified when -H is specified." >&2
   exit 1
@@ -74,5 +74,5 @@ set +u
 if [ ! -z "$POST_ADDRESS" ]; then
   # max connection time is 2mins, 3 mins in total to complete the request
   # add -f to fail on server errors.
-  curl -X POST "${POST_HEADER[@]}" -d @"$JSON_OUT" --connect-timeout 120 --max-time 180 -f "$POST_ADDRESS" > ${IN_FILE_BASE}.post_server_response.txt
+  curl -X POST "${POST_HEADERS[@]}" -d @"$JSON_OUT" --connect-timeout 120 --max-time 180 -f "$POST_ADDRESS" > ${IN_FILE_BASE}.post_server_response.txt
 fi
