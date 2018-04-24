@@ -41,13 +41,17 @@ inputs:
       shellQuote: true
 
   post_header:
-    type: string[]?
-    doc: "Optional POST address to send JSON results"
+    type:
+      - "null"
+      - type: array
+        items: string
+        inputBinding:
+          prefix: -H
+          separate: true
+          shellQuote: true
+    doc: "Optional headers to send with JSON results"
     inputBinding:
       position: 3
-      prefix: -H
-      separate: true
-      shellQuote: true
 
 outputs:
   chksum_json:

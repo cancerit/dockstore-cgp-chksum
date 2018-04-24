@@ -5,8 +5,8 @@
   },
   "post_address":"https://postman-echo.com/post",
   "post_header": [
-    "feak-header:im-real",
-    "feak-header-2:he-is-not-real"
+    "feak-header-1:i-am-real",
+    "feak-header-2: feak-header-1-is-not-real"
   ],
   "chksum_json": {
     "path": "/tmp/test_out.json",
