@@ -12,11 +12,12 @@ Inputs are:
 
 1. A file from which md5sum and sha512sum are generated
 2. An optional POST address to send the JSON file to
+3. An optional list of headers to include in the POST request
 
 Outputs are:
 
-1. "check_sums.json" - A JSON file where checksums are stored
-2. "post_server_response.txt" - A text file contains POST server response
+1. "${input_file_name}.check_sums.json" - A JSON file where checksums are stored
+2. "${input_file_name}.post_server_response.txt" - A text file contains POST server response
 
 LICENCE
 =======
