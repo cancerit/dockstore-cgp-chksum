@@ -19,7 +19,7 @@ dct:creator:
 
 requirements:
   - class: DockerRequirement
-    dockerPull: "quay.io/wtsicgp/dockstore-cgp-chksum:0.1.2"
+    dockerPull: "quay.io/wtsicgp/dockstore-cgp-chksum:0.2.0"
 
 inputs:
   in_file:
@@ -27,6 +27,8 @@ inputs:
     doc: "file to have checksum generated from"
     inputBinding:
       position: 1
+      prefix: -i
+      separate: true
       shellQuote: true
 
   post_address:
@@ -34,7 +36,22 @@ inputs:
     doc: "Optional POST address to send JSON results"
     inputBinding:
       position: 2
+      prefix: -p
+      separate: true
       shellQuote: true
+
+  post_headers:
+    type:
+      - "null"
+      - type: array
+        items: string
+        inputBinding:
+          prefix: -H
+          separate: true
+          shellQuote: true
+    doc: "Optional headers to send with JSON results"
+    inputBinding:
+      position: 3
 
 outputs:
   chksum_json:
