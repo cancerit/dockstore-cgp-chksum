@@ -13,6 +13,7 @@ Inputs are:
 1. A file from which md5sum and sha512sum are generated
 2. An optional POST address to send the JSON file to
 3. An optional list of headers to include in the POST request
+4. An optional list of curl exit codes. If curl command exits with any of the code, the whole tool still exits 0.
 
 Outputs are:
 
