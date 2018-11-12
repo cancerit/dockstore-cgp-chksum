@@ -19,7 +19,7 @@ dct:creator:
 
 requirements:
   - class: DockerRequirement
-    dockerPull: "quay.io/wtsicgp/dockstore-cgp-chksum:0.2.0"
+    dockerPull: "quay.io/wtsicgp/dockstore-cgp-chksum:0.3.0"
 
 inputs:
   in_file:
@@ -52,6 +52,20 @@ inputs:
     doc: "Optional headers to send with JSON results"
     inputBinding:
       position: 3
+
+  ignore_curl_exits:
+    type:
+      - "null"
+      - type: array
+        items: int
+        inputBinding:
+          prefix: -E
+          separate: true
+          shellQuote: true
+    doc: "Optional curl exit codes to suppress"
+    inputBinding:
+      position: 4
+
 
 outputs:
   chksum_json:
