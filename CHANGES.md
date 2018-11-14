@@ -2,7 +2,7 @@
 
 ## 0.4.0
 
-* the tool is not using `PUT` method other than `POST`, and a default header `"Content-Type: application/json"` is added when put the result to an endpoint.
+* the tool is now changed to use `PUT` method other than `POST`, and a default header `"Content-Type: application/json"` is added when put the result to an endpoint.
 * added `set -x` in the script to print commands being executed;
 * added `-A` option to suppress all curl exit status.
 
