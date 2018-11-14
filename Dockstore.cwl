@@ -19,7 +19,7 @@ dct:creator:
 
 requirements:
   - class: DockerRequirement
-    dockerPull: "quay.io/wtsicgp/dockstore-cgp-chksum:0.3.0"
+    dockerPull: "quay.io/wtsicgp/dockstore-cgp-chksum:0.4.0"
 
 inputs:
   in_file:
@@ -31,16 +31,16 @@ inputs:
       separate: true
       shellQuote: true
 
-  post_address:
+  put_address:
     type: ["null", string]
-    doc: "Optional POST address to send JSON results"
+    doc: "Optional PUT address to send JSON results"
     inputBinding:
       position: 2
       prefix: -p
       separate: true
       shellQuote: true
 
-  post_headers:
+  put_headers:
     type:
       - "null"
       - type: array
@@ -65,7 +65,13 @@ inputs:
     doc: "Optional curl exit codes to suppress"
     inputBinding:
       position: 4
-
+  
+  ignore_all_curl_exits:
+    type: boolean?
+    inputBinding:
+      prefix: -A
+      position: 5
+    doc: "Flag to suppress all curl exit status" 
 
 outputs:
   chksum_json:
@@ -73,9 +79,9 @@ outputs:
     outputBinding:
       glob: $(inputs.in_file.basename).check_sums.json
 
-  post_server_response:
+  server_response:
     type: ["null", File]
     outputBinding:
-      glob: $(inputs.in_file.basename).post_server_response.txt
+      glob: $(inputs.in_file.basename).server_response.txt
 
 baseCommand: ["/opt/wtsi-cgp/bin/sums2json.sh"]
