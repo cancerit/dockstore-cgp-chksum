@@ -3,7 +3,7 @@ FROM alpine:3.6
 MAINTAINER yx2@sanger.ac.uk
 
 LABEL uk.ac.sanger.cgp="Cancer Genome Project, Wellcome Trust Sanger Institute" \
-      version="0.1.1" \
+      version="0.4.1" \
       description="tool to produce and post file checksum for dockstore.org"
 
 USER root
@@ -17,6 +17,7 @@ RUN apk add --no-cache bash
 RUN addgroup -S cgp && adduser -G cgp -S cgp
 RUN mkdir -p $OPT/bin
 COPY scripts/sums2json.sh $OPT/bin
+RUN chmod 755 $OPT/bin/sums2json.sh
 
 USER cgp
 WORKDIR /home/cgp

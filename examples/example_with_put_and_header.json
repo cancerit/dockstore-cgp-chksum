@@ -3,12 +3,17 @@
     "path": "ftp://ftp.sanger.ac.uk/pub/cancer/dockstore/human/cytoband_GRCh37d5.txt",
     "class": "File"
   },
-  "post_address":"https://postman-echo.com/post",
+  "put_address":"https://postman-echo.com/put",
+  "put_headers": [
+    "feak-header-1:i-am-real",
+    "feak-header-2: feak-header-1-is-not-real"
+  ],
+  "ignore_all_curl_exits": true,
   "chksum_json": {
     "path": "/tmp/test_out.json",
     "class": "File"
   },
-  "post_server_response": {
+  "server_response": {
     "path": "/tmp/test_server_response.txt",
     "class": "File"
   }
