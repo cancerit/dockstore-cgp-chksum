@@ -5,6 +5,7 @@ function usage {
   echo " -i File : input file.";
   echo " -p URL : URL to send PUT request of checksum result to.";
   echo " -H String : header to include when sending the PUT request. Can be specified multiple times for headers.";
+  echo " -j File : a json file to use as the chksum output, i.e. skip chksum generating step.";
   echo " -E cURL_exit_code : exit 1 if the last cURL command exits with the code. Can be specified multiple times for extra error codes.";
   echo " -A Flag : to suppress all curl exit codes - the tool will exit 0 regardless curl's exit status.";
 }
@@ -21,11 +22,13 @@ fi
 SUPPRESS_ALL_CURL_EXITS=0
 
 # processing the inputs
-while getopts ":hi:p:H:E:A" opt; do
+while getopts ":hi:j:p:H:E:A" opt; do
   case $opt in
     h ) usage
         exit 0 ;;
     i ) IN_FILE="$OPTARG"
+        if [ ! -f "$OPTARG" ]; then echo -e "\nError: $OPTARG does not exist" >&2; exit 1; fi ;;
+    j ) IN_JSON="$OPTARG"
         if [ ! -f "$OPTARG" ]; then echo -e "\nError: $OPTARG does not exist" >&2; exit 1; fi ;;
     p ) ENDPOINT_URL="$OPTARG" ;;
     H ) PUT_HEADERS+=(-H "$OPTARG") ;;
@@ -59,22 +62,28 @@ IN_FILE_BASE=$(basename ${IN_FILE})
 JSON_OUT="${IN_FILE_BASE}.check_sums.json"
 
 set -o pipefail
-cat $IN_FILE | tee >(md5sum > md5.checksum) | sha512sum > sha2.checksum
-exit_code=$?
-
-# exit with error code of any command that fails from here
-set -e
-
-if [ $exit_code -eq 0 ]
+if [ -z "$IN_JSON" ]
 then
-    md5=`cut -d ' ' -f1 md5.checksum`
-    sha=`cut -d ' ' -f1 sha2.checksum`
-    echo -e "{\n\t\"status\":\"success\",\n\t\"md5sum\":\"$md5\",\n\t\"sha2sum\":\"$sha\"\n}" > $JSON_OUT
-else
-    echo -e "{\n\t\"status\":\"failed\"\n}" > $JSON_OUT
-fi
+  cat $IN_FILE | tee >(md5sum > md5.checksum) | sha512sum > sha2.checksum
+  exit_code=$?
 
-rm -f md5.checksum sha2.checksum
+  # exit with error code of any command that fails from here
+  set -e
+
+  if [ $exit_code -eq 0 ]
+  then
+      md5=`cut -d ' ' -f1 md5.checksum`
+      sha=`cut -d ' ' -f1 sha2.checksum`
+      echo -e "{\n\t\"status\":\"success\",\n\t\"md5sum\":\"$md5\",\n\t\"sha2sum\":\"$sha\"\n}" > $JSON_OUT
+  else
+      echo -e "{\n\t\"status\":\"failed\"\n}" > $JSON_OUT
+  fi
+
+  rm -f md5.checksum sha2.checksum
+else
+  echo "Use file: $IN_JSON as chksum output, I'm not generating a new one!"
+  cp $IN_JSON $JSON_OUT
+fi
 
 set +ue
 
