@@ -19,7 +19,7 @@ dct:creator:
 
 requirements:
   - class: DockerRequirement
-    dockerPull: "quay.io/wtsicgp/dockstore-cgp-chksum:0.4.0"
+    dockerPull: "quay.io/wtsicgp/dockstore-cgp-chksum:0.4.1"
 
 inputs:
   in_file:

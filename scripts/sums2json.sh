@@ -5,7 +5,7 @@ function usage {
   echo " -i File : input file.";
   echo " -p URL : URL to send PUT request of checksum result to.";
   echo " -H String : header to include when sending the PUT request. Can be specified multiple times for headers.";
-  echo " -j File : a json file to use as the chksum output, i.e. skip chksum generating step.";
+  echo " -j File : a json file to use as the chksum output, i.e. the tool will skip chksum generating step.";
   echo " -E cURL_exit_code : exit 1 if the last cURL command exits with the code. Can be specified multiple times for extra error codes.";
   echo " -A Flag : to suppress all curl exit codes - the tool will exit 0 regardless curl's exit status.";
 }

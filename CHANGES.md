@@ -1,5 +1,9 @@
 # CHANGES
 
+## 0.4.1
+
+* added `-j` option to take a file as chksum output JSON file, so that this tool will not generate a new one, i.e. the tool will skip chksum generating step.
+
 ## 0.4.0
 
 * the tool is now changed to use `PUT` method other than `POST`, and a default header `"Content-Type: application/json"` is added when put the result to an endpoint.

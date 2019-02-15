@@ -3,7 +3,7 @@
     "path": "ftp://ftp.sanger.ac.uk/pub/cancer/dockstore/human/cytoband_GRCh37d5.txt",
     "class": "File"
   },
-  "put_address":"https://postman-echo.com/puuuut",
+  "put_address":"https://postman-echo.com/put",
   "put_headers": [
     "feak-header-1:i-am-real",
     "feak-header-2: feak-header-1-is-not-real"
