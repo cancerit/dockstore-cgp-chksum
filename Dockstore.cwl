@@ -73,6 +73,15 @@ inputs:
       position: 5
     doc: "Flag to suppress all curl exit status" 
 
+  in_json:
+    type: ["null", File]
+    doc: "use as chksum output instead of generating a new one."
+    inputBinding:
+      position: 6
+      prefix: -j
+      separate: true
+      shellQuote: true
+
 outputs:
   chksum_json:
     type: File
